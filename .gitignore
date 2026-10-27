@@ -1,0 +1,9 @@
+# Local run artifacts and secrets are not committed.
+runs/*
+!runs/.gitkeep
+state/freeze.json
+.env
+.venv/
+__pycache__/
+.pytest_cache/
+*.py[cod]

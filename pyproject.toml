@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "selfharness"
+version = "0.1.0"
+description = "A reproducible harness for learning and validating coding-agent rules"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = ["openai>=1.40.0", "streamlit>=1.37.0", "pyyaml>=6.0.1", "scipy>=1.11.0"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0.0", "ruff>=0.6.0"]
+
+[project.scripts]
+selfharness = "selfharness.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

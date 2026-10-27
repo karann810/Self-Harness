@@ -1,0 +1,24 @@
+project: {name: selfharness, version: 0.1.0}
+models:
+  agent:
+    name: gpt-4o-mini # Example; verify model availability before use.
+    temperature: 0.1
+    base_url: null
+    pricing: {input_per_million_usd: 0.15, output_per_million_usd: 0.60}
+  diagnoser:
+    name: gpt-4o
+    temperature: 0.0
+    base_url: null
+    pricing: {input_per_million_usd: 2.50, output_per_million_usd: 10.00}
+agent: {max_steps: 16, max_completion_tokens: 1800}
+docker: {enabled: true, image: python:3.11-slim, cpus: 1, memory: 1g, pids_limit: 128, local_allow_prefixes: [[python, -m, pytest]]}
+evaluation: {seeds: [11, 23, 37], max_infrastructure_retries: 1}
+gate:
+  confidence: 0.95
+  bootstrap_samples: 20000
+  bootstrap_seed: 1729
+  minimum_pairs: 30
+  minimum_improvement: 0.03
+  maximum_seed_regression: 0.05
+  critical_audit_prefixes: ["test_file_modified:", "outside_allowed_paths:", "test_bypass_pattern:"]
+logging: {max_output_characters: 8000, redact_secrets: true}
